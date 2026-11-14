@@ -1,5 +1,6 @@
 package org.hackertube.pipepipe;
 
+import org.hackertube.pipepipe.bridge.PipePipeBridge;
 import org.hackertube.pipepipe.config.HackerTubePrefs;
 import org.hackertube.pipepipe.engine.HackerTubeRepository;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -21,6 +22,7 @@ public final class HackerTubePlugin implements PipePipePlugin {
     public StreamingService createService(final int serviceId,
                                           @Nonnull final PluginContext context) {
         final HackerTubePrefs prefs = new HackerTubePrefs(context.getPreferences());
+        PipePipeBridge.ensureStarterPlaylistsSeededAsync(serviceId, prefs);
         final HackerTubeRepository repository = new HackerTubeRepository(prefs);
         return new HackerTubeService(serviceId, prefs, repository);
     }

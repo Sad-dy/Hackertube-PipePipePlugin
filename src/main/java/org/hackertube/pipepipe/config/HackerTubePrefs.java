@@ -17,6 +17,7 @@ public final class HackerTubePrefs {
     public static final String DEFAULT_LIKES_PLAYLIST = "HackerTube Likes";
     public static final String DEFAULT_DISLIKES_PLAYLIST = "HackerTube Dislikes";
     public static final int DEFAULT_AUTO_SYNC_HOURS = 168;
+    private static final String KEY_STARTER_PLAYLISTS_SEEDED = "starter_playlists_seeded_v1";
 
     @Nullable
     private final PluginPreferences prefs;
@@ -84,6 +85,16 @@ public final class HackerTubePrefs {
             return Math.max(0, Integer.parseInt(raw.trim()));
         } catch (final NumberFormatException ignored) {
             return DEFAULT_AUTO_SYNC_HOURS;
+        }
+    }
+
+    public boolean isStarterPlaylistsSeeded() {
+        return prefs != null && prefs.getBoolean(KEY_STARTER_PLAYLISTS_SEEDED);
+    }
+
+    public void markStarterPlaylistsSeeded() {
+        if (prefs != null) {
+            prefs.putBoolean(KEY_STARTER_PLAYLISTS_SEEDED, true);
         }
     }
 

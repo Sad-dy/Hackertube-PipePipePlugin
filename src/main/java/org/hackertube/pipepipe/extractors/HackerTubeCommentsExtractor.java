@@ -141,8 +141,12 @@ public final class HackerTubeCommentsExtractor extends CommentsExtractor {
         };
     }
 
-    private static Description buildCommentDescription(final MentionRecord m) {
+    public static Description buildCommentDescription(final MentionRecord m) {
         final StringBuilder html = new StringBuilder();
+        if (!m.hnUrl.isEmpty()) {
+            // Put a bare URL on line 1 so Android's Linkify keeps it tappable even when collapsed.
+            html.append("<p>HN: ").append(esc(m.hnUrl)).append("</p>");
+        }
         if (!m.why.isEmpty()) {
             html.append("<p><b>Why:</b> ").append(esc(m.why)).append("</p>");
         }
@@ -158,9 +162,6 @@ public final class HackerTubeCommentsExtractor extends CommentsExtractor {
             html.append("<p>").append(formatted).append("</p>");
         } else if (!m.quote.isEmpty()) {
             html.append("<blockquote>&ldquo;").append(esc(m.quote)).append("&rdquo;</blockquote>");
-        }
-        if (!m.hnUrl.isEmpty()) {
-            html.append("<p><a href=\"").append(esc(m.hnUrl)).append("\">Open comment on Hacker News</a></p>");
         }
         return new Description(html.toString(), Description.HTML);
     }
