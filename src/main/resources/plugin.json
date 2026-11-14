@@ -1,0 +1,94 @@
+{
+  "pluginId": "org.hackertube.pipepipe",
+  "name": "HackerTube",
+  "versionCode": 1,
+  "versionName": "1.0.0",
+  "apiVersion": "1.0",
+  "author": "Personal",
+  "entryClass": "org.hackertube.pipepipe.HackerTubePlugin",
+  "description": "Personal PipePipe plugin for hackertube.org with personalized feeds, labeled HN comments, topic areas, curated playlists, local history/playlist ranking, and offline snapshot fallback.",
+  "icon": "icon.png",
+  "theme": {
+    "light": "#FF6600",
+    "dark": "#CC5200"
+  },
+  "settings": [
+    {
+      "key": "base_url",
+      "type": "string",
+      "title": "HackerTube Base URL",
+      "summary": "Base URL of the HackerTube web service or mirror",
+      "default": "https://hackertube.org"
+    },
+    {
+      "key": "direct_youtube_mode",
+      "type": "boolean",
+      "title": "Open videos directly in YouTube",
+      "summary": "Emit native YouTube items instead of HackerTube pages (bypasses HN comments and summaries)",
+      "default": false
+    },
+    {
+      "key": "use_video_frames",
+      "type": "boolean",
+      "title": "Use neutral video frames",
+      "summary": "Prefer middle-video frames (hq2.jpg) over custom YouTube clickbait thumbnails",
+      "default": true
+    },
+    {
+      "key": "personalize_from_pipepipe",
+      "type": "boolean",
+      "title": "Personalize from PipePipe history & playlists",
+      "summary": "Read local PipePipe watch history and configurable Likes/Dislikes playlists to rank Home recommendations",
+      "default": true
+    },
+    {
+      "key": "likes_playlist",
+      "type": "string",
+      "title": "Likes playlist names",
+      "summary": "Comma-separated PipePipe local playlist names treated as liked videos for feed recommendations",
+      "default": "HackerTube Likes"
+    },
+    {
+      "key": "dislikes_playlist",
+      "type": "string",
+      "title": "Dislikes playlist names",
+      "summary": "Comma-separated PipePipe local playlist names treated as disliked videos to steer feed away",
+      "default": "HackerTube Dislikes"
+    },
+    {
+      "key": "hide_watched_in_home",
+      "type": "boolean",
+      "title": "Hide watched videos in Home",
+      "summary": "Exclude videos already in PipePipe watch history from the Home feed",
+      "default": true
+    },
+    {
+      "key": "offline_fallback_mode",
+      "type": "boolean",
+      "title": "Force local snapshot mode",
+      "summary": "Serve Home, Browse, Search, and HN comments locally from cached hackertube-data.zip without server calls",
+      "default": false
+    },
+    {
+      "key": "hide_news_videos",
+      "type": "boolean",
+      "title": "Hide news items in feeds",
+      "summary": "Filter out ephemeral shelf_life=news videos in Home and Browse lists (still searchable)",
+      "default": true
+    },
+    {
+      "key": "hide_zero_rec_home",
+      "type": "boolean",
+      "title": "Hide unrecommended citations in Home",
+      "summary": "Only show videos with at least one HN recommendation (hn.recommenders > 0) in Home",
+      "default": true
+    },
+    {
+      "key": "auto_sync_hours",
+      "type": "string",
+      "title": "Snapshot refresh interval (hours)",
+      "summary": "How often to refresh hackertube-data.zip and playlists locally for offline/sunset fallback (0 disables)",
+      "default": "168"
+    }
+  ]
+}

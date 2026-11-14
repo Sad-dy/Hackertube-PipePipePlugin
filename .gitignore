@@ -1,0 +1,8 @@
+.gradle
+build/
+.idea
+local.properties
+*.iml
+# signing keys must never be committed
+*.key
+.agents/
